@@ -21,7 +21,7 @@ fileprivate struct AHPlayerKeyPath {
     static let bufferEmpty = #keyPath(AVPlayerItem.isPlaybackBufferEmpty)
 }
 
-internal protocol AHAudioPlayerDelegate: class {
+internal protocol AHAudioPlayerDelegate: AnyObject {
     func audioPlayerDidStartToPlay(_ player: AHAudioPlayer)
     func audioPlayerDidReachEnd(_ player: AHAudioPlayer)
     
@@ -414,7 +414,7 @@ extension AHAudioPlayer {
     }
     
     func seek(toTime: TimeInterval, _ completion: ((Bool)->Void)? = nil) {
-        let jumoToTime = CMTimeMakeWithSeconds(toTime, Int32(NSEC_PER_SEC))
+        let jumoToTime = CMTimeMakeWithSeconds(toTime, preferredTimescale: Int32(NSEC_PER_SEC))
         
         player?.seek(to: jumoToTime, completionHandler: { (success) in
             completion?(success)
@@ -584,7 +584,7 @@ extension AHAudioPlayer {
         guard let statusInt = change[NSKeyValueChangeKey.newKey] as? Int else {
             return
         }
-        guard let status = AVPlayerItemStatus(rawValue: statusInt)  else {
+        guard let status = AVPlayerItem.Status(rawValue: statusInt)  else {
             return
         }
         
@@ -642,7 +642,7 @@ extension AHAudioPlayer {
         if isSessionSetup == false {
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                try audioSession.setCategory(AVAudioSession.Category.playback)
             } catch {
                 print("Setting category to AVAudioSessionCategoryPlayback failed.")
                 return
@@ -761,14 +761,14 @@ extension AHAudioPlayer {
             
             
             // Enters Background
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationWillResignActive, object: nil, queue: nil, using: {[weak self] (_) in
+            NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil, using: {[weak self] (_) in
                 if self?.state == .paused {
                     self?.isPausedBeforeEnterBackground = true
                 }
                 self?.updateNowPlaying(true)
                 self?.updateArtwork()
             })
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: {[weak self] (_) in
+            NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil, using: {[weak self] (_) in
                 self?.isPausedBeforeEnterBackground = false
             })
             

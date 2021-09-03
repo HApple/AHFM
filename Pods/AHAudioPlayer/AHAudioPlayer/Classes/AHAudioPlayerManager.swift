@@ -179,7 +179,7 @@ extension AHAudioPlayerManager {
         }
         //cached progress periodically
         timer = Timer(timeInterval: 10, target: self, selector: #selector(self.updateInBackground), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
         
         
         AHAudioPlayer.shared.play(url: trackURL, toTime: toTime)
@@ -213,7 +213,7 @@ extension AHAudioPlayerManager {
         
         //cached progress periodically
         timer = Timer(timeInterval: 10, target: self, selector: #selector(self.updateInBackground), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
         
     }
     

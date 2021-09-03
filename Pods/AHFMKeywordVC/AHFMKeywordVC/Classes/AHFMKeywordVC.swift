@@ -14,7 +14,7 @@ import SVProgressHUD
 
 private let CellID = "CellID"
 
-@objc public protocol AHFMKeywordVCDelegate: class {
+@objc public protocol AHFMKeywordVCDelegate: AnyObject {
     func keywordVCSearchBtnTapped(_ vc: UIViewController)
     func keywordVCGetInitialKeyword(_ vc: UIViewController) -> String?
     
@@ -36,7 +36,8 @@ public class AHFMKeywordVC: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
+        //self.automaticallyAdjustsScrollViewInsets = false
+        tableView.contentInsetAdjustmentBehavior = .never
         
         let nib = UINib(nibName: "\(AHFMShowCell.self)", bundle: Bundle.currentBundle(self))
         tableView.register(nib, forCellReuseIdentifier: CellID)
@@ -85,7 +86,7 @@ public class AHFMKeywordVC: UITableViewController {
         self.items = items
         self.tableView.reloadData()
         let topIndexPath = IndexPath(row: 0, section: 0)
-        self.tableView.scrollToRow(at: topIndexPath, at: UITableViewScrollPosition.top, animated: false)
+        self.tableView.scrollToRow(at: topIndexPath, at: UITableView.ScrollPosition.top, animated: false)
     }
     
     deinit {
@@ -110,7 +111,7 @@ public class AHFMKeywordVC: UITableViewController {
         manager?.viewWillDisappear(self)
     }
     
-    func backBtnTapped(_ button: UIButton) {
+    @objc func backBtnTapped(_ button: UIButton) {
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
         }else{
@@ -118,7 +119,7 @@ public class AHFMKeywordVC: UITableViewController {
         }
     }
     
-    func searchBtnTapped(_ button: UIButton) {
+    @objc func searchBtnTapped(_ button: UIButton) {
         manager?.keywordVCSearchBtnTapped(self)
     }
 

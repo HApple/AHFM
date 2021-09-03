@@ -11,7 +11,7 @@ import UIKit
 private let AHBannerCellID = "AHBannerCellID"
 
 
-public protocol AHBannerViewDelegate: class {
+public protocol AHBannerViewDelegate: AnyObject {
     func bannerView(_ bannerView: AHBannerView, didTapped atIndex: Int)
     func bannerView(_ bannerView: AHBannerView, didSwitch toIndex: Int)
     func bannerViewForImage(_ bannerView: AHBannerView, imageView: UIImageView, atIndex: Int)
@@ -187,7 +187,7 @@ private extension AHBannerView {
             timer?.invalidate()
         }
         timer = Timer(timeInterval: bannerStyle.timeInterval, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer!, forMode: .commonModes)
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
     }
     
     func stopTimer() {

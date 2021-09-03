@@ -12,6 +12,7 @@ import AHFMModuleManager
 import AHFMBottomPlayerServices
 
 
+
 public struct AHFMBottomPlayerManager: AHFMModuleManager {
     public static func activate() {
         let vcStr = "AHFMBottomPlayer.AHFMBottomPlayer"
@@ -20,7 +21,7 @@ public struct AHFMBottomPlayerManager: AHFMModuleManager {
             print("\(vcStr) doesn't exist")
             return
         }
-        
+    
         let manager = Manager.shared
         if let vc = vcType.value(forKey: "shared") as? UIViewController {
             vc.setValue(manager, forKey: "manager")

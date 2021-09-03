@@ -71,8 +71,8 @@ public class AHFMCategoryVC: UICollectionViewController {
             let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil)
             
             if let iconMap = plist as? [String: String] {
-                let cateogryNames = iconMap.flatMap({$0.0})
-                self.cateogryNames = cateogryNames
+                //let cateogryNames = iconMap
+                //self.cateogryNames = cateogryNames
                 UserDefaults.standard.set(self.cateogryNames, forKey: CategoryUserDefaultKey)
             }
         }

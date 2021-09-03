@@ -115,7 +115,7 @@ open class AHFloatingTextView: UIScrollView {
         timer?.invalidate()
         timer = nil
         timer = Timer(timeInterval: updateTimeInterval, target: self, selector: #selector(scrolling), userInfo: nil, repeats: true)
-        RunLoop.main.add(self.timer!, forMode: .commonModes)
+        RunLoop.main.add(self.timer!, forMode: RunLoop.Mode.common)
         
     }
     
@@ -158,7 +158,7 @@ extension String {
     fileprivate func stringSize(boundWdith: CGFloat, boundHeight: CGFloat, font: UIFont) -> CGSize {
         let boundSize: CGSize =  CGSize(width: boundWdith, height: boundHeight)
         
-        let size = (self as NSString).boundingRect(with: boundSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil).size
+        let size = (self as NSString).boundingRect(with: boundSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil).size
         return size
     }
 }

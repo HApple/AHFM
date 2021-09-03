@@ -238,7 +238,7 @@ extension AHFMEpisodeListVC {
         headerView.addSubview(btn)
     }
     
-    func dismiss(_ button: UIButton) {
+    @objc func dismiss(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }

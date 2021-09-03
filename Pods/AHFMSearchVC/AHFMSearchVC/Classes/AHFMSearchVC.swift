@@ -105,11 +105,11 @@ extension AHFMSearchVC {
 
 //MARK:- Events
 extension AHFMSearchVC {
-    func collectionViewTapGestureTapped(_ gesture: UIGestureRecognizer) {
+    @objc func collectionViewTapGestureTapped(_ gesture: UIGestureRecognizer) {
         self.searchBar.resignFirstResponder()
     }
     
-    public func cancelButtonTapped(_ btn: UIButton) {
+    @objc public func cancelButtonTapped(_ btn: UIButton) {
         self.searchBar.resignFirstResponder()
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
@@ -198,9 +198,9 @@ extension AHFMSearchVC: UICollectionViewDelegateFlowLayout, UICollectionViewData
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             if indexPath.section == RecentTermSectionNumber {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HeaderReuseID, for: indexPath) as! AHFMSectionSupplementaryCell
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReuseID, for: indexPath) as! AHFMSectionSupplementaryCell
                 if let count = self.recentTerms?.count, count > 0 {
                     header.titleLabel.text = "Recent⏱"
                     header.hideClearBtn = false
@@ -212,7 +212,7 @@ extension AHFMSearchVC: UICollectionViewDelegateFlowLayout, UICollectionViewData
                 return header
                 
             }else if indexPath.section == HotTermSectionNumber {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HeaderReuseID, for: indexPath) as! AHFMSectionSupplementaryCell
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReuseID, for: indexPath) as! AHFMSectionSupplementaryCell
                 if let count = self.hotTerms?.count, count > 0 {
                     header.titleLabel.text = "Hot🔥"
                     header.hideClearBtn = true
@@ -270,13 +270,13 @@ extension AHFMSearchVC: AHFMSectionSupplementaryCellDelegate {
 //MARK:- UISearchBarDelegate
 extension AHFMSearchVC: UISearchBarDelegate {
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.characters.count == 0 {
+        if searchText.count == 0 {
             self.switchToCollectionView()
             self.manager?.searchVCShouldLoadRecentTerms(self)
         }
     }
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let term = searchBar.text, term.characters.count > 0 else {return }
+        guard let term = searchBar.text, term.count > 0 else {return }
         
         self.manager?.searchVC(self, shouldSaveRecentTerm: term)
         
@@ -292,7 +292,7 @@ extension AHFMSearchVC: UISearchBarDelegate {
 //MARK:- UISearchResultsUpdating
 extension AHFMSearchVC: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
-        if let term = searchController.searchBar.text, term.characters.count == 0 {
+        if let term = searchController.searchBar.text, term.count == 0 {
             self.manager?.searchVCShouldClearRecentTerms(self)
         }
     }
@@ -308,8 +308,8 @@ extension AHFMSearchVC {
             return
         }
         self.automaticallyAdjustsScrollViewInsets = false
-        resultVC?.willMove(toParentViewController: self)
-        self.addChildViewController(resultVC!)
+        resultVC?.willMove(toParent: self)
+        self.addChild(resultVC!)
         self.resultVC = resultVC
     }
     
@@ -345,7 +345,7 @@ extension AHFMSearchVC {
         collectionView.register(nib, forCellWithReuseIdentifier: CellID)
         
         let headerNib = UINib(nibName: "\(AHFMSectionSupplementaryCell.self)", bundle: Bundle.currentBundle(self))
-        collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: HeaderReuseID)
+        collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReuseID)
         self.view.addSubview(collectionView)
         
         

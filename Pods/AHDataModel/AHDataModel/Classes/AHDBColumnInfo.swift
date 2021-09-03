@@ -44,7 +44,7 @@ public struct AHDBColumnInfo: Equatable {
         self.name = name
         self.type = type
         for constraint in constraints {
-            guard constraint.characters.count > 0 else {
+            guard constraint.count > 0 else {
                 continue
             }
             let lowercased = constraint.lowercased()

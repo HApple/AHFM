@@ -25,9 +25,9 @@ class AHFMCategoryHandler: NSObject {
             vc = AHFMCategoryCollectonVC(collectionViewLayout: layout)
             vc?.delegate = self
             categoryVCs.append(vc!)
-            vc?.willMove(toParentViewController: featureVC)
-            featureVC.addChildViewController(vc!)
-            vc?.didMove(toParentViewController: featureVC)
+            vc?.willMove(toParent: featureVC)
+            featureVC.addChild(vc!)
+            vc?.didMove(toParent: featureVC)
         }else{
             vc = categoryVCs[section]
         }

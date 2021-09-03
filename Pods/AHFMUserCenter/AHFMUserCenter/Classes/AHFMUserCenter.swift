@@ -88,7 +88,7 @@ public class AHFMUserCenter: UITableViewController {
         manager?.viewWillDisappear(self)
     }
     
-    func backBtnTapped(_ button: UIButton) {
+    @objc func backBtnTapped(_ button: UIButton) {
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
         }else{

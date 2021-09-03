@@ -181,7 +181,7 @@ extension AHFMDownloadingVC: AHDownloaderDelegate {
         
         self.eps.remove(at: index)
         let indexPath = IndexPath(row: index, section: 0)
-        self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.top)
+        self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.top)
         delegate?.downloadingVCDownloadTaskDidChange(self, currentTasks: self.eps.count)
     }
     public func downloaderDidPaused(url: String){

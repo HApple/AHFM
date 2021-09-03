@@ -113,7 +113,7 @@ public class AHFMMainVC: UIViewController {
         self.categoryView.setBadge(atIndex: 0, badgeNumber: 1)
     }
     
-    func searchBtnTapped(_ btn: UIButton) {
+    @objc func searchBtnTapped(_ btn: UIButton) {
         guard let searchVC = self.searchVC else {
             return
         }

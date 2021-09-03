@@ -82,7 +82,7 @@ class AHFMDownloadedShowPageCell: UITableViewCell {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func didChangeEpisode(_ notification: Notification) {
+    @objc func didChangeEpisode(_ notification: Notification) {
         guard let episode = self.episode else {
             return
         }

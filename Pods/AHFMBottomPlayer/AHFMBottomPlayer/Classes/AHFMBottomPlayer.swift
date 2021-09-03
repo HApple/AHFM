@@ -122,7 +122,7 @@ extension AHFMBottomPlayer {
         
         if shouldShow == false {
             self.isCurrentlyShowing = false
-            self.removeFromParentViewController()
+            self.removeFromParent()
             self.view.removeFromSuperview()
         }else{
             guard let delegate = UIApplication.shared.delegate else {
@@ -136,8 +136,8 @@ extension AHFMBottomPlayer {
             }
             
             self.isCurrentlyShowing = true
-            self.willMove(toParentViewController: parentVC)
-            self.didMove(toParentViewController: parentVC)
+            self.willMove(toParent: parentVC)
+            self.didMove(toParent: parentVC)
             
             self.view.willMove(toSuperview: keyWindow)
             keyWindow.addSubview(self.view)
@@ -355,11 +355,11 @@ extension AHFMBottomPlayer {
         }
         
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer!, forMode: .commonModes)
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
     }
     
     
-    func updateTimer() {
+    @objc func updateTimer() {
         let progressWidth = self.view.frame.width * CGFloat(AHAudioPlayerManager.shared.progress)
         self.progressWidth.constant = progressWidth
     }

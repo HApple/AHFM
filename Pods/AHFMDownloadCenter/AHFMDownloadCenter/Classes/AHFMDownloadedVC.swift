@@ -132,7 +132,7 @@ extension AHFMDownloadedVC {
         }
         
         if let shows = self.shows {
-            if let index = shows.index(of: show) {
+            if let index = shows.firstIndex(of: show) {
                 if shows.count == 1 {
                     // no need to do animation if there's only one show involved
                     self.shows?.remove(at: index)
@@ -143,7 +143,7 @@ extension AHFMDownloadedVC {
                     // delete first, then add to top later
                     self.shows?.remove(at: index)
                     let indexPath = IndexPath(row: index, section: 0)
-                    self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.none)
+                    self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.none)
                 }
             }
         }else{
@@ -152,7 +152,7 @@ extension AHFMDownloadedVC {
         
         self.shows?.insert(show, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.top)
+        self.tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.top)
     }
 }
 

@@ -22,7 +22,7 @@ class AHPageContainerView: UIView {
     weak var delegate: AHCategoryContainerDelegate?
     weak var parentVC: UIViewController!
     
-    fileprivate lazy var pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey: self.interControllerSpacing])
+    fileprivate lazy var pageVC: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.interPageSpacing: self.interControllerSpacing])
     
     fileprivate weak var pageScrollView: UIScrollView?
     fileprivate weak var pageControl: UIPageControl?
@@ -72,9 +72,9 @@ class AHPageContainerView: UIView {
         self.backgroundColor = UIColor.clear
         pageVC.view.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height + 37.0)
         
-        pageVC.willMove(toParentViewController: self.parentVC)
-        self.parentVC.addChildViewController(pageVC)
-        pageVC.didMove(toParentViewController: self.parentVC)
+        pageVC.willMove(toParent: self.parentVC)
+        self.parentVC.addChild(pageVC)
+        pageVC.didMove(toParent: self.parentVC)
         pageVC.view.willMove(toSuperview: self)
         addSubview(pageVC.view)
         pageVC.view.didMoveToSuperview()
@@ -231,7 +231,7 @@ extension AHPageContainerView: AHCategoryNavBarDelegate {
         guard toIndex >= 0 && toIndex < childVCs.count else { return }
         guard toIndex != currentIndex else { return }
         
-        let direction: UIPageViewControllerNavigationDirection = (toIndex > currentIndex) ? .forward : .reverse
+        let direction: UIPageViewController.NavigationDirection = (toIndex > currentIndex) ? .forward : .reverse
         
         let vc = childVCs[toIndex]
         pageVC.setViewControllers([vc], direction: direction, animated: true) { (_) in

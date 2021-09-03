@@ -24,7 +24,7 @@ public class Manager: NSObject {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func didSwitchPlay(_ notification: Notification) {
+    @objc func didSwitchPlay(_ notification: Notification) {
         if let trackId = AHAudioPlayerManager.shared.playingTrackId {
             let history = AHFMEpisodeHistory(with: ["id": trackId, "addedAt": Date().timeIntervalSinceReferenceDate])
             AHFMEpisodeHistory.write {

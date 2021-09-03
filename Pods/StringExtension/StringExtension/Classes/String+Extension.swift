@@ -28,7 +28,7 @@ public extension String {
     public func stringSize(boundWdith: CGFloat, boundHeight: CGFloat, font: UIFont) -> CGSize {
         let boundSize: CGSize =  CGSize(width: boundWdith, height: boundHeight)
         
-        let size = (self as NSString).boundingRect(with: boundSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil).size
+        let size = (self as NSString).boundingRect(with: boundSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil).size
         return size
     }
 }

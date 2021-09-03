@@ -43,7 +43,7 @@ open class AHStackButton: UIButton {
     }
     
     
-    open override func setTitle(_ title: String?, for state: UIControlState) {
+    open override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
         self.setNeedsLayout()
     }

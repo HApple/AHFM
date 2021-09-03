@@ -282,11 +282,11 @@ extension AHFMDownloadListVC: AHFMDownloadListCellDelegate{
 
 //MARK:- UIControl Events
 extension AHFMDownloadListVC {
-    func downloadCenterBtn(_ sender: UIButton) {
+    @objc func downloadCenterBtn(_ sender: UIButton) {
         manager?.downloadListVCDidTapNavBarRightButton(self)
     }
     
-    func allBtnTapped(_ sender: UIButton) {
+    @objc func allBtnTapped(_ sender: UIButton) {
         for item in self.downloadItems{
             if item.downloadState == .notStarted || item.downloadState == .failed {
                 AHDownloader.download(item.remoteURL)
@@ -294,7 +294,7 @@ extension AHFMDownloadListVC {
         }
         
     }
-    func backBtnTapped(_ sender: UIButton) {
+    @objc func backBtnTapped(_ sender: UIButton) {
         if self.navigationController == nil {
             self.dismiss(animated: true, completion: nil)
         }else{

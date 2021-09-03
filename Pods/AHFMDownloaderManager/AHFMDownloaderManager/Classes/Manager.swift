@@ -16,7 +16,7 @@ public class Manager: AHDownloaderDelegate {
     static let shared = Manager()
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive(_:)), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     deinit {

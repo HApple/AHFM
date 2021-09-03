@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AHFMMainManager.activate()
         
         guard let data = AHServiceRouter.doTask(AHFMMainServices.service, taskName: AHFMMainServices.taskCreateVC, userInfo: [:], completion: nil) else {

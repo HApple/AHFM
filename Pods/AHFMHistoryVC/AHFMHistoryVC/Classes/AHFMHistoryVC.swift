@@ -104,7 +104,7 @@ extension AHFMHistoryVC {
 
 //MARK:- Editing Stuff
 extension AHFMHistoryVC {
-    func navEditBtnTapped(_ btn: UIButton) {
+    @objc func navEditBtnTapped(_ btn: UIButton) {
         btn.isSelected = !btn.isSelected
         
         self.isEditing = btn.isSelected
@@ -182,7 +182,7 @@ extension AHFMHistoryVC {
         }
     }
     
-    func deleteBtnTapped(_ btn: UIButton) {
+    @objc func deleteBtnTapped(_ btn: UIButton) {
         guard self.isEditing else {
             return
         }
@@ -203,7 +203,7 @@ extension AHFMHistoryVC {
         
         self.historyEpisode = newHistoryEpisodes
         
-        self.tableView.deleteRows(at: self.selectedIndexPaths, with: UITableViewRowAnimation.fade)
+        self.tableView.deleteRows(at: self.selectedIndexPaths, with: UITableView.RowAnimation.fade)
         
         self.updateEditToolView(numberOfItemsSelected: 0)
         self.navEditBtnTapped(self.navEditBtn)
@@ -212,7 +212,7 @@ extension AHFMHistoryVC {
         
     }
     
-    func pickBtnTapped(_ btn: UIButton) {
+    @objc func pickBtnTapped(_ btn: UIButton) {
         guard self.isEditing else {
             return
         }
@@ -231,7 +231,7 @@ extension AHFMHistoryVC {
         for i in 0..<numberOfRows {
             let indexPath = IndexPath(row: i, section: HistoryCellSection)
             let _ = tableView.delegate?.tableView?(tableView, willSelectRowAt: indexPath)
-            tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
             tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
         }
     }
@@ -248,7 +248,7 @@ extension AHFMHistoryVC {
     
     
     
-    func backBtnTapped(_ button: UIButton) {
+    @objc func backBtnTapped(_ button: UIButton) {
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
         }else{

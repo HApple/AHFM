@@ -298,9 +298,81 @@ DEPENDENCIES:
   - AHFMMainServices
   - AHServiceRouter
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AHAudioPlayer
+    - AHCategoryView
+    - AHDataModel
+    - AHDownloader
+    - AHDownloadTool
+    - AHFloatingTextView
+    - AHProgressSlider
+    - AHServiceRouter
+    - Alamofire
+    - KeychainAccess
+    - SDWebImage
+    - SVProgressHUD
+    - SwiftyJSON
+  https://github.com/iOSModularization/AHFMSpecs.git:
+    - AHBannerView
+    - AHDraggableLayout
+    - AHFMAudioPlayerManager
+    - AHFMAudioPlayerVC
+    - AHFMAudioPlayerVCManager
+    - AHFMAudioPlayerVCServices
+    - AHFMBottomPlayer
+    - AHFMBottomPlayerManager
+    - AHFMBottomPlayerServices
+    - AHFMCategoryVC
+    - AHFMCategoryVCManager
+    - AHFMCategoryVCServices
+    - AHFMDataCenter
+    - AHFMDataTransformers
+    - AHFMDownloadCenter
+    - AHFMDownloadCenterManager
+    - AHFMDownloadCenterServices
+    - AHFMDownloaderManager
+    - AHFMDownloadList
+    - AHFMDownloadListManager
+    - AHFMDownloadListServices
+    - AHFMEpisodeListVC
+    - AHFMEpisodeListVCManager
+    - AHFMEpisodeListVCServices
+    - AHFMFeature
+    - AHFMFeatureManager
+    - AHFMFeatureServices
+    - AHFMHistoryVC
+    - AHFMHistoryVCManager
+    - AHFMHistoryVCServices
+    - AHFMKeywordVC
+    - AHFMKeywordVCManager
+    - AHFMKeywordVCServices
+    - AHFMMain
+    - AHFMMainManager
+    - AHFMMainServices
+    - AHFMModuleManager
+    - AHFMNetworking
+    - AHFMSearchVC
+    - AHFMSearchVCManager
+    - AHFMSearchVCService
+    - AHFMSearchVCServices
+    - AHFMServices
+    - AHFMShowPage
+    - AHFMShowPageManger
+    - AHFMShowPageServices
+    - AHFMUserCenter
+    - AHFMUserCenterManager
+    - AHFMUserCenterServices
+    - AHNibLoadable
+    - AHStackButton
+    - BundleExtension
+    - StringExtension
+    - UIDeviceExtension
+    - UIImageExtension
+
 SPEC CHECKSUMS:
   AHAudioPlayer: 6ad8f9342116c9f4ecc0198b549e9d1d57c9d119
-  AHBannerView: 3398d651c377e0aaafc2928cc1988e6048e6fc5c
+  AHBannerView: 5e1e1eb3f30cab714da3eb2b52b276761ad4abcf
   AHCategoryView: cbe9d0af0dce0f1d04d1d0e7dfd31b209729a267
   AHDataModel: bc50b4d7bbbcb7fc64240fff73042287d98fe753
   AHDownloader: 9b8f94b5828a8efeeb238eef3dc5026cc953b285
@@ -368,6 +440,6 @@ SPEC CHECKSUMS:
   UIDeviceExtension: 53d1d2177714a3e434e755b6c0fb66678595fce4
   UIImageExtension: 074e3bef49ae8cc2f1dda1906f1209c15dca67d8
 
-PODFILE CHECKSUM: a3d5d4f27b6c9cfdacd69388bade488313139342
+PODFILE CHECKSUM: 9043893fb7c14c286495fee87796c2cc639ba470
 
-COCOAPODS: 1.3.0.beta.2
+COCOAPODS: 1.10.2

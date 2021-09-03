@@ -122,7 +122,7 @@ class AHFMDownloadedShowPageVC: UIViewController {
 
 //MARK:- Editing Stuff
 extension AHFMDownloadedShowPageVC {
-    func navEditBtnTapped(_ btn: UIButton) {
+    @objc func navEditBtnTapped(_ btn: UIButton) {
         btn.isSelected = !btn.isSelected
         
         self.isEditing = btn.isSelected
@@ -198,7 +198,7 @@ extension AHFMDownloadedShowPageVC {
         }
     }
     
-    func deleteBtnTapped(_ btn: UIButton) {
+    @objc func deleteBtnTapped(_ btn: UIButton) {
         guard self.isEditing else {
             return
         }
@@ -234,9 +234,9 @@ extension AHFMDownloadedShowPageVC {
         self.downloadedEpisodes = remainEpisodes
         
         self.show?.totalDownloadedSize -= deletedSize
-        self.tableView.deleteRows(at: self.selectedIndexPaths, with: UITableViewRowAnimation.fade)
+        self.tableView.deleteRows(at: self.selectedIndexPaths, with: UITableView.RowAnimation.fade)
         let indexSet = IndexSet(integer: ShowPageCellSection)
-        self.tableView.reloadSections(indexSet, with: UITableViewRowAnimation.none)
+        self.tableView.reloadSections(indexSet, with: UITableView.RowAnimation.none)
         
         self.updateEditToolView(numberOfItemsSelected: 0)
         self.navEditBtnTapped(self.navEditBtn)
@@ -251,7 +251,7 @@ extension AHFMDownloadedShowPageVC {
         
     }
     
-    func pickBtnTapped(_ btn: UIButton) {
+    @objc func pickBtnTapped(_ btn: UIButton) {
         guard self.isEditing else {
             return
         }
@@ -270,7 +270,7 @@ extension AHFMDownloadedShowPageVC {
         for i in 0..<numberOfRows {
             let indexPath = IndexPath(row: i, section: ShowPageCellSection)
             let _ = tableView.delegate?.tableView?(tableView, willSelectRowAt: indexPath)
-            tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
             tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
         }
     }
@@ -301,7 +301,7 @@ extension AHFMDownloadedShowPageVC {
         super.viewWillDisappear(animated)
     }
     
-    func backBtnTapped(_ button: UIButton) {
+    @objc func backBtnTapped(_ button: UIButton) {
         if self.navigationController != nil {
             self.navigationController?.popViewController(animated: true)
         }else{

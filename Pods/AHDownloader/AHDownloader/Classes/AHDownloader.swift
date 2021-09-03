@@ -26,7 +26,7 @@ struct DownloadTask {
 }
 
 /// The delegate of this protocol should NOT be doing anything related to saving info into the DB!! If you need downloaded file path, query the DB.
-public protocol AHDownloaderDelegate: class {
+public protocol AHDownloaderDelegate: AnyObject {
     func downloaderWillStartDownload(url:String)
     func downloaderDidStartDownload(url:String)
     func downloaderDidUpdate(url:String, progress:Double)

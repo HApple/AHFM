@@ -57,7 +57,7 @@ public class AHProgressSlider: UISlider {
     }
 
     // Disable user-defined MaximumTrackImage
-    public override func setMaximumTrackImage(_ image: UIImage?, for state: UIControlState) {
+    public override func setMaximumTrackImage(_ image: UIImage?, for state: UIControl.State) {
         return
     }
     

@@ -366,7 +366,7 @@ extension AHFMShowPageVC {
         tableView.contentInset.top = Y_Inset
     }
     
-    func sectionBtnsTapped(_ button: UIButton) {
+    @objc func sectionBtnsTapped(_ button: UIButton) {
         if button == epSectionleft {
             // epBtn left
             recommendedTableView.removeFromSuperview()
@@ -399,7 +399,7 @@ extension AHFMShowPageVC {
         }
     }
     
-    func backBtnTapped(_ sender: UIBarButtonItem) {
+    @objc func backBtnTapped(_ sender: UIBarButtonItem) {
         if self.navigationController == nil {
             self.dismiss(animated: true, completion: nil)
         }else{
